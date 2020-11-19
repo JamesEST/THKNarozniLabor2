@@ -26,6 +26,8 @@ namespace THKNarozniLabor2
             InitializeComponent();
             drawing = false;
             currentPen = new Pen(Color.Black);
+            historyColor = currentPen.Color;
+            Console.WriteLine(historyColor);
             currentPen.Width = trackBar1.Value;
             History = new List<Image>();
         }
@@ -38,7 +40,11 @@ namespace THKNarozniLabor2
             pictureBox2.Image = pic;
             History.Add(new Bitmap(pictureBox2.Image));
 
-            if(pictureBox2.Image != null && historyCounter != 0)
+            Graphics g = Graphics.FromImage(pictureBox2.Image);
+            g.Clear(Color.White);
+            g.DrawImage(pictureBox2.Image, 0, 0, 750, 500);
+
+            if (pictureBox2.Image != null && historyCounter != 0)
             {
                 var result = MessageBox.Show("Сохранить текушие изображение перед тем как создать новое?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -62,24 +68,25 @@ namespace THKNarozniLabor2
 
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
-            if(pictureBox2.Image == null)
+            if (pictureBox2.Image == null)
             {
-                MessageBox.Show("Создай сначало новый файл");
+                MessageBox.Show("Создай сначало новый файл", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 drawing = true;
                 oldLocation = e.Location;
                 currentPath = new GraphicsPath();
                 historyColor = currentPen.Color;
             }
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
+                historyColor = currentPen.Color;
                 drawing = true;
                 oldLocation = e.Location;
                 currentPath = new GraphicsPath();
-               
+
                 Console.WriteLine(historyColor);
                 currentPen.Color = System.Drawing.Color.White;
 
@@ -94,7 +101,7 @@ namespace THKNarozniLabor2
             savefile.FilterIndex = 4;
             savefile.ShowDialog();
 
-            if(savefile.FileName != "")
+            if (savefile.FileName != "")
             {
                 System.IO.FileStream fs = (System.IO.FileStream)savefile.OpenFile();
 
@@ -137,9 +144,10 @@ namespace THKNarozniLabor2
             currentPen.Color = historyColor;
             try
             {
+                currentPath = new GraphicsPath();
                 currentPath.Dispose();
             }
-            catch{ };
+            catch { };
         }
 
         private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
@@ -153,7 +161,7 @@ namespace THKNarozniLabor2
                 oldLocation = e.Location;
                 g.Dispose();
                 pictureBox2.Invalidate();
-               
+
             }
         }
 
@@ -163,7 +171,7 @@ namespace THKNarozniLabor2
             {
                 pictureBox2.Image = new Bitmap(History[--historyCounter]);
             }
-            else MessageBox.Show("История пуста");
+            else MessageBox.Show("История пуста", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void renoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,8 +183,112 @@ namespace THKNarozniLabor2
             }
             else
             {
-                MessageBox.Show("История пуста");
+                MessageBox.Show("История пуста", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void solidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void solidToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            currentPen.DashStyle = DashStyle.Solid;
+            solidToolStripMenuItem.Checked = true;
+            dotToolStripMenuItem.Checked = false;
+            dashDotToolStripMenuItem.Checked = false;
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            History.Clear();
+            historyCounter = 0;
+            Bitmap pic = new Bitmap(750, 500);
+            pictureBox2.Image = pic;
+            History.Add(new Bitmap(pictureBox2.Image));
+
+            Graphics g = Graphics.FromImage(pictureBox2.Image);
+            g.Clear(Color.White);
+            g.DrawImage(pictureBox2.Image, 0, 0, 750, 500);
+
+            if (pictureBox2.Image != null && historyCounter != 0)
+            {
+                var result = MessageBox.Show("Сохранить текушие изображение перед тем как создать новое?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                switch (result)
+                {
+                    case DialogResult.No: break;
+                    case DialogResult.Yes: saveToolStripMenuItem_Click(sender, e); break;
+                }
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|PNG Image|*.png";
+            savefile.Title = "Save an Image File";
+            savefile.FilterIndex = 4;
+            savefile.ShowDialog();
+
+            if (savefile.FileName != "")
+            {
+                System.IO.FileStream fs = (System.IO.FileStream)savefile.OpenFile();
+
+                switch (savefile.FilterIndex)
+                {
+                    case 1:
+                        this.pictureBox2.Image.Save(fs, ImageFormat.Jpeg);
+                        break;
+                    case 2:
+                        this.pictureBox2.Image.Save(fs, ImageFormat.Bmp);
+                        break;
+                    case 3:
+                        this.pictureBox2.Image.Save(fs, ImageFormat.Gif);
+                        break;
+                    case 4:
+                        this.pictureBox2.Image.Save(fs, ImageFormat.Png);
+                        break;
+                }
+                fs.Close();
+            }
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog OP = new OpenFileDialog();
+            OP.Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|PNG Image|*.png";
+            OP.Title = "Open an Image File";
+            OP.FilterIndex = 1;
+
+            if (OP.ShowDialog() != DialogResult.Cancel)
+            {
+                pictureBox2.Image = new Bitmap(OP.FileName);
+                
+                //pictureBox2.Load(OP.FileName);
+            }
+                
+
+           
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 newForm = new Form2();
+            newForm.Show();
         }
     }
 }
