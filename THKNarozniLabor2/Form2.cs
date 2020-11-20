@@ -12,8 +12,9 @@ namespace THKNarozniLabor2
 {
     public partial class Form2 : Form
     {
-        Color colorResult;
-        public Form2(Color color)
+        Color color;
+        public Color colorResult = Color.Black;
+        public Form2()
         {
             InitializeComponent();
             hScrollBar1.Tag = numericUpDown1;
@@ -31,10 +32,16 @@ namespace THKNarozniLabor2
 
         }
 
+        public Color GetColor()
+        {
+            return colorResult;
+        }
+
         private void UpdateColor()
         {
             colorResult = Color.FromArgb(hScrollBar1.Value, hScrollBar2.Value, hScrollBar3.Value);
             pictureBox1.BackColor = colorResult;
+          
         }
 
         private void hScrollBar1_ValueChanged(object sender, EventArgs e)
@@ -79,6 +86,16 @@ namespace THKNarozniLabor2
             NumericUpDown numericUpDown = (NumericUpDown)sender;
             ScrollBar scrollBar = (ScrollBar)numericUpDown.Tag;
             scrollBar.Value = (int)numericUpDown.Value;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UpdateColor();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
