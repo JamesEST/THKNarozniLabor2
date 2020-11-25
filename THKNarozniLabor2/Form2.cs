@@ -14,6 +14,7 @@ namespace THKNarozniLabor2
     {
         Color color;
         public Color colorResult = Color.Black;
+        
         public Form2()
         {
             InitializeComponent();
@@ -31,7 +32,6 @@ namespace THKNarozniLabor2
 
 
         }
-
         public Color GetColor()
         {
             return colorResult;
@@ -88,16 +88,9 @@ namespace THKNarozniLabor2
             scrollBar.Value = (int)numericUpDown.Value;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            UpdateColor();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-   
     }
 }

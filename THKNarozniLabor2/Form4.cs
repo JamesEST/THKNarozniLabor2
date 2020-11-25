@@ -89,15 +89,15 @@ namespace THKNarozniLabor2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (++historyCounter < History.Count)
-            {
-                historyCounter--;
-                panel1.BackgroundImage = new Bitmap(History[++historyCounter]);
-            }
-            else
-            {
-                MessageBox.Show("История пуста", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //if (++historyCounter < History.Count)
+            //{
+            //    historyCounter--;
+            //    panel1.BackgroundImage = new Bitmap(History[++historyCounter]);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("История пуста", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void button3_Click(object sender, EventArgs e)
