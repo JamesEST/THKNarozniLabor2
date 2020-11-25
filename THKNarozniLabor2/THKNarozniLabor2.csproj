@@ -112,11 +112,17 @@
     <Content Include="Image\add-file.png" />
     <Content Include="Image\addition.png" />
     <Content Include="Image\cancel.png" />
+    <Content Include="Image\crop.ico" />
+    <Content Include="Image\crop.png" />
+    <Content Include="Image\cropp.png" />
+    <Content Include="Image\croppp.png" />
     <Content Include="Image\folder.png" />
     <Content Include="Image\marker.png" />
     <Content Include="Image\redo.png" />
     <Content Include="Image\save.png" />
     <Content Include="Image\undo.png" />
+    <None Include="Resources\cropp.png" />
+    <None Include="Resources\croppp.png" />
     <None Include="Resources\about.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

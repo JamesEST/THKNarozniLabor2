@@ -97,5 +97,7 @@ namespace THKNarozniLabor2
         {
             this.Close();
         }
+
+   
     }
 }

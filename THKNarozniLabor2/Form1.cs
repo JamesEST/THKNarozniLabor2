@@ -98,5 +98,10 @@ namespace THKNarozniLabor2
         {
             OpenPanelChild(new Form4());
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -129,7 +129,7 @@ namespace THKNarozniLabor2
 
                 Bitmap bmp = new Bitmap(this.panel1.Width, this.panel1.Height);
                 this.panel1.DrawToBitmap(bmp, new Rectangle(0, 0, this.panel1.Width, this.panel1.Height));
-                bmp.Save(@"D:\TestDrawToBitmap.bmp", System.Drawing.Imaging.ImageFormat.Jpeg);
+                bmp.Save(@"C:\TestDrawToBitmap.jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
         }
 
