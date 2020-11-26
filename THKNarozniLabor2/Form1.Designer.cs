@@ -52,6 +52,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.PictureBoxChild = new System.Windows.Forms.PictureBox();
             this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -64,7 +65,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.panel3.Controls.Add(this.button13);
             this.panel3.Controls.Add(this.button12);
+            this.panel3.Controls.Add(this.button6);
             this.panel3.Controls.Add(this.button10);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.button1);
@@ -87,7 +90,7 @@
             this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.button10.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Location = new System.Drawing.Point(0, 472);
             this.button10.Name = "button10";
             this.button10.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -103,7 +106,6 @@
             this.panel6.Controls.Add(this.button11);
             this.panel6.Controls.Add(this.button8);
             this.panel6.Controls.Add(this.button7);
-            this.panel6.Controls.Add(this.button6);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 344);
             this.panel6.Name = "panel6";
@@ -117,7 +119,7 @@
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.button11.ForeColor = System.Drawing.Color.LightGray;
-            this.button11.Location = new System.Drawing.Point(0, 90);
+            this.button11.Location = new System.Drawing.Point(0, 60);
             this.button11.Name = "button11";
             this.button11.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button11.Size = new System.Drawing.Size(200, 30);
@@ -134,7 +136,7 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.button8.ForeColor = System.Drawing.Color.LightGray;
-            this.button8.Location = new System.Drawing.Point(0, 60);
+            this.button8.Location = new System.Drawing.Point(0, 30);
             this.button8.Name = "button8";
             this.button8.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button8.Size = new System.Drawing.Size(200, 30);
@@ -151,7 +153,7 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.button7.ForeColor = System.Drawing.Color.LightGray;
-            this.button7.Location = new System.Drawing.Point(0, 30);
+            this.button7.Location = new System.Drawing.Point(0, 0);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(200, 30);
@@ -166,16 +168,18 @@
             this.button6.Dock = System.Windows.Forms.DockStyle.Top;
             this.button6.FlatAppearance.BorderSize = 0;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.button6.ForeColor = System.Drawing.Color.LightGray;
-            this.button6.Location = new System.Drawing.Point(0, 0);
+            this.button6.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(0, 519);
+            this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(200, 30);
+            this.button6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(200, 44);
             this.button6.TabIndex = 7;
             this.button6.Text = "Style";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button1
             // 
@@ -347,8 +351,9 @@
             // 
             this.trackBar1.LargeChange = 1;
             this.trackBar1.Location = new System.Drawing.Point(862, 14);
+            this.trackBar1.Maximum = 20;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(224, 50);
+            this.trackBar1.Size = new System.Drawing.Size(224, 45);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -358,7 +363,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(6, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
@@ -374,10 +379,9 @@
             // 
             // PictureBoxChild
             // 
-            this.PictureBoxChild.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxChild.Location = new System.Drawing.Point(0, 0);
+            this.PictureBoxChild.Location = new System.Drawing.Point(28, 25);
             this.PictureBoxChild.Name = "PictureBoxChild";
-            this.PictureBoxChild.Size = new System.Drawing.Size(1098, 565);
+            this.PictureBoxChild.Size = new System.Drawing.Size(1043, 515);
             this.PictureBoxChild.TabIndex = 0;
             this.PictureBoxChild.TabStop = false;
             this.PictureBoxChild.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxChild_MouseDown);
@@ -386,23 +390,37 @@
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.button12.Dock = System.Windows.Forms.DockStyle.Top;
             this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(83)))), ((int)(((byte)(204)))));
-            this.button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Nirmala UI", 12F);
-            this.button12.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button12.Location = new System.Drawing.Point(0, 519);
+            this.button12.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.button12.ForeColor = System.Drawing.Color.LightGray;
+            this.button12.Location = new System.Drawing.Point(0, 563);
             this.button12.Name = "button12";
-            this.button12.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button12.Size = new System.Drawing.Size(200, 47);
-            this.button12.TabIndex = 14;
+            this.button12.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.button12.Size = new System.Drawing.Size(200, 30);
+            this.button12.TabIndex = 11;
             this.button12.Text = "Square";
             this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.UseVisualStyleBackColor = false;
+            this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button13
+            // 
+            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.button13.ForeColor = System.Drawing.Color.LightGray;
+            this.button13.Location = new System.Drawing.Point(0, 593);
+            this.button13.Name = "button13";
+            this.button13.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.button13.Size = new System.Drawing.Size(200, 30);
+            this.button13.TabIndex = 14;
+            this.button13.Text = "Line";
+            this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // Form1
             // 
@@ -453,6 +471,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
     }
 }
 
