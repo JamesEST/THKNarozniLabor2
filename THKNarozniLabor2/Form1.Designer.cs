@@ -47,22 +47,24 @@
             this.Editbtn = new System.Windows.Forms.Button();
             this.PanelLogo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PictureBoxChild = new System.Windows.Forms.PictureBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button12 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxChild)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.panel3.Controls.Add(this.button12);
             this.panel3.Controls.Add(this.button10);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.button1);
@@ -341,13 +343,22 @@
             this.panel1.Size = new System.Drawing.Size(1098, 92);
             this.panel1.TabIndex = 7;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(862, 14);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(224, 50);
+            this.trackBar1.TabIndex = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(6, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(41, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
@@ -373,14 +384,25 @@
             this.PictureBoxChild.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBoxChild_MouseMove);
             this.PictureBoxChild.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBoxChild_MouseUp);
             // 
-            // trackBar1
+            // button12
             // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(816, 14);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(270, 45);
-            this.trackBar1.TabIndex = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.button12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(83)))), ((int)(((byte)(204)))));
+            this.button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(20)))), ((int)(((byte)(48)))));
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.button12.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button12.Location = new System.Drawing.Point(0, 519);
+            this.button12.Name = "button12";
+            this.button12.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button12.Size = new System.Drawing.Size(200, 47);
+            this.button12.TabIndex = 14;
+            this.button12.Text = "Square";
+            this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 
@@ -400,9 +422,9 @@
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxChild)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -430,6 +452,7 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button12;
     }
 }
 

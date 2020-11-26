@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -14,19 +15,22 @@ namespace THKNarozniLabor2
 {
     public partial class Form4 : Form
     {
+        GraphicsPath currentPath;
+        Point oldLocation;
         Graphics g;
-        int x = -1;
-        int y = -1;
-        bool moving = false;
-        Pen pen;
+        public Pen currentPen;
         List<Image> History;
-
         List<Point> currentLine = new List<Point>();
         List<List<Point>> curves = new List<List<Point>>();
         int historyCounter;
+        int X = 0;
+        int Y = 0;
+        int X0 = 0;
+        int Y0 = 0;
+        int figure = 0;
 
 
-       
+
         public Form4()
         {
             InitializeComponent();
@@ -51,27 +55,45 @@ namespace THKNarozniLabor2
             currentLine.Clear();
             panel1.Invalidate();
 
-          //  moving = false;
-          //  x = -1;
-          //  y = -1;
-          //  panel1.Cursor = Cursors.Default;
+            if (figure == 1) //Drawing square
+            {
+                Graphics g = Graphics.FromImage(panel1.BackgroundImage);
+                Rectangle rect = new Rectangle(X, Y, X0, Y0);
+                currentPath.AddRectangle(rect);
+                g.DrawPath(currentPen, currentPath);
+                oldLocation = e.Location;
+                g.Dispose();
+                panel1.Invalidate();
+            }
+
+            if (figure == 0)
+            {
+                currentPath = new GraphicsPath();
+                currentPath.Dispose();
+            }
+
+            //  moving = false;
+            //  x = -1;
+            //  y = -1;
+            //  panel1.Cursor = Cursors.Default;
         }
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                currentLine.Add(e.Location);
+                currentPath.AddLine(e.Location, oldLocation);
                 panel1.Invalidate();
+    
             }
-            //if(moving && x!=-1 && y!= -1)
-            //{
-            //    g.DrawLine(pen, new Point(x, y), e.Location);
-            //    x = e.X;
-            //    y = e.Y;
-            //    currentLine.Add(e.Location);
-            //    panel1.Invalidate();
-            //}
+
+            else
+            {
+                X = oldLocation.X;
+                Y = oldLocation.Y;
+                X0 = e.Location.X - oldLocation.X;
+                Y0 = e.Location.Y - oldLocation.Y;
+            }
 
 
 
@@ -147,6 +169,16 @@ namespace THKNarozniLabor2
         private void button5_Click(object sender, EventArgs e)
         {
             curves.Clear(); currentLine.Clear(); panel1.Invalidate();
+        }
+
+        private void triangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -22,8 +22,13 @@ namespace THKNarozniLabor2
         Pen currentPen;
         Color historyColor;
         List<Image> History;
-        Form2 newForm = new Form2();
+        Form2 newForm;
         bool StylePen = false;
+        int X = 0;
+        int Y = 0;
+        int X0 = 0;
+        int Y0 = 0;
+        int figure = 0;
         public Form1()
         {
             this.KeyPreview = true;
@@ -35,6 +40,7 @@ namespace THKNarozniLabor2
             Console.WriteLine(historyColor);
             //currentPen.Width = trackBar1.Value;
             History = new List<Image>();
+            Console.WriteLine(currentPen.Color);
 
         }
         private void design()
@@ -69,7 +75,7 @@ namespace THKNarozniLabor2
         private void OpenPanelChild(Form childForm)
         {
             if (activeform != null)
-                activeform.Close();
+                activeform.Hide();
             activeform = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -92,7 +98,18 @@ namespace THKNarozniLabor2
 
         private void button7_Click(object sender, EventArgs e)
         {
-            newForm.Show();
+            //OpenPanelChild(new Form2());
+            try
+            {
+                newForm = new Form2();
+                newForm.Show();
+            }
+            catch (Exception)
+            {
+                newForm.Dispose();
+            }
+            
+
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -184,6 +201,23 @@ namespace THKNarozniLabor2
             History.Add(new Bitmap(PictureBoxChild.Image));
             historyCounter++;
 
+            if (figure == 1) //Drawing square
+            {
+                Graphics g = Graphics.FromImage(PictureBoxChild.Image);
+                Rectangle rect = new Rectangle(X, Y, X0, Y0);
+                currentPath.AddRectangle(rect);
+                g.DrawPath(currentPen, currentPath);
+                oldLocation = e.Location;
+                g.Dispose();
+                PictureBoxChild.Invalidate();
+            }
+
+            if (figure == 0)
+            {
+                currentPath = new GraphicsPath();
+                currentPath.Dispose();
+            }
+
             if (historyCounter > 10)
             {
                 History.RemoveAt(0);
@@ -235,7 +269,7 @@ namespace THKNarozniLabor2
             label1.Text = e.X.ToString() + ", " + e.Y.ToString();
             if (drawing)
             {
-                if (StylePen == true)
+                if (StylePen == false)
                 {
                     Graphics g = Graphics.FromImage(PictureBoxChild.Image);
                     currentPath.AddLine(oldLocation, e.Location);
@@ -243,7 +277,7 @@ namespace THKNarozniLabor2
                     oldLocation = e.Location;
                     g.Dispose();
                 }
-                else if (StylePen == false)
+                else if (StylePen == true)
                 {
                     Graphics g = Graphics.FromImage(PictureBoxChild.Image);
                    
@@ -256,6 +290,13 @@ namespace THKNarozniLabor2
                 
 
 
+            }
+            else
+            {
+                X = oldLocation.X;
+                Y = oldLocation.Y;
+                X0 = e.Location.X - oldLocation.X;
+                Y0 = e.Location.Y - oldLocation.Y;
             }
         }
 
@@ -316,6 +357,11 @@ namespace THKNarozniLabor2
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             currentPen.Width = trackBar1.Value;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            figure = 1;
         }
     }
 }
