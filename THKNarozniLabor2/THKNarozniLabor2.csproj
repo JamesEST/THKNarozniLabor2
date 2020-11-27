@@ -111,6 +111,7 @@
     <Content Include="Image\marker.png" />
     <Content Include="Image\redo.png" />
     <Content Include="Image\save.png" />
+    <None Include="Image\u-CgxRDMcEM.jpg" />
     <Content Include="Image\undo.png" />
     <None Include="Resources\cropp.png" />
     <None Include="Resources\croppp.png" />

@@ -15,7 +15,7 @@ namespace THKNarozniLabor2
 
     public partial class Form1 : Form
     {
-        bool drawing;
+        bool drawing = false;
         int historyCounter;
         GraphicsPath currentPath;
         Point oldLocation;
@@ -33,19 +33,15 @@ namespace THKNarozniLabor2
             this.KeyPreview = true;
             InitializeComponent();
             design();
-            drawing = false;
             currentPen = new Pen(Color.Black);
             historyColor = currentPen.Color;
-            Console.WriteLine(historyColor);
-            //currentPen.Width = trackBar1.Value;
             History = new List<Image>();
-            Console.WriteLine(currentPen.Color);
-
         }
         private void design()
         {
             panel5.Visible = false;
             panel6.Visible = false;
+            panel7.Visible = false;
         }
         private void designhide()
         {
@@ -53,6 +49,8 @@ namespace THKNarozniLabor2
                 panel5.Visible = false;
             if (panel6.Visible == true)
                 panel6.Visible = false;
+            if (panel7.Visible == true)
+                panel7.Visible = false;
         }
         private Color CheckColor()
         {
@@ -108,16 +106,13 @@ namespace THKNarozniLabor2
                 newForm.Dispose();
             }
         }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            OpenPanelChild(new Form4());
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             //new
+            
             newForm = new Form2();
+            trackBar1.Visible = true;
+            label1.Visible = true;
             History.Clear();
             historyCounter = 0;
             Bitmap pic = new Bitmap(750, 500);
@@ -128,16 +123,8 @@ namespace THKNarozniLabor2
             g.Clear(Color.White);
             g.DrawImage(PictureBoxChild.Image, 0, 0, 750, 500);
 
-            if (PictureBoxChild.Image != null )
-            {
-                var result = MessageBox.Show("Сохранить текушие изображение перед тем как создать новое?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            
 
-                switch (result)
-                {
-                    case DialogResult.No: break;
-                    case DialogResult.Yes: button4_Click(sender, e); break;
-                }
-            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -160,6 +147,10 @@ namespace THKNarozniLabor2
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+            SaveImage();
+        }
+        private void SaveImage()
         {
             //save
             SaveFileDialog savefile = new SaveFileDialog();
@@ -225,7 +216,7 @@ namespace THKNarozniLabor2
            
             if (PictureBoxChild.Image == null)
             {
-                MessageBox.Show("Создай сначало новый файл", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                button2_Click(sender, e);
                 return;
             }
             if (e.Button == MouseButtons.Left)
@@ -269,6 +260,7 @@ namespace THKNarozniLabor2
                     currentPath.AddLine(oldLocation, e.Location);
                     g.DrawPath(currentPen, currentPath);
                     oldLocation = e.Location;
+                    
                     g.Dispose();
                 }
                 //Drawing square
@@ -281,6 +273,7 @@ namespace THKNarozniLabor2
                     currRect.Width = maxLength;
                     currRect.Height = maxLength;
                     Graphics g = Graphics.FromImage(PictureBoxChild.Image);
+                    currentPen.Color = CheckColor();
                     g.DrawRectangle(new Pen(Brushes.Red), currRect.X, currRect.Y, currRect.Width, currRect.Height);
                 }
                 
@@ -321,15 +314,6 @@ namespace THKNarozniLabor2
                 MessageBox.Show("История пуста", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-            if (e.KeyChar == 'Z')
-            {
-                button8_Click(sender, e);
-            }
-        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == (Keys.Control | Keys.Z))
@@ -339,6 +323,10 @@ namespace THKNarozniLabor2
             else if(keyData == (Keys.Control | Keys.Shift | Keys.Z))
             {
                 RenoBind();
+            }
+            else if (keyData == (Keys.Control | Keys.S))
+            {
+                SaveImage();
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -350,19 +338,48 @@ namespace THKNarozniLabor2
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //designshow(panel6);
+            designshow(panel7);
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             StylePen = "Square";
-            Console.WriteLine(StylePen);
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
             StylePen = "Line";
-            Console.WriteLine(StylePen);
+            currentPen.DashStyle = DashStyle.Solid;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            StylePen = "Line";
+            currentPen.DashStyle = DashStyle.Dash;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            StylePen = "Line";
+            currentPen.DashStyle = DashStyle.Dot;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            StylePen = "Line";
+            currentPen.DashStyle = DashStyle.DashDotDot;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            OpenPanelChild(new Form4());
+            trackBar1.Visible = false;
+            label1.Visible = false;
+        }
+
+        private void PictureBoxChild_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
